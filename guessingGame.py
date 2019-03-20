@@ -2,11 +2,11 @@
 import sys
 import random
 
-
+#this function takes argument from system and determines if it is a valid upper limit
 def takeInput():
     highest = sys.argv[1]
     while True:
-        try:
+        try: #tests that it is an integer and that it is above 10
             if int(highest) > 10:
                 break
             else:
@@ -26,6 +26,8 @@ def takeInput():
     hi_ans.append(answer)
     return hi_ans
 
+
+#this is the actual function that plays the game. at every point the user may choose to quit. this function includes all edge cases
 def playGame(highest, answer):
     guess = raw_input("Guess a number from 0 to %d, or type 'quit' to quit: " %highest)
     if guess == 'quit':
@@ -127,19 +129,4 @@ if __name__ == '__main__':
     wantLoop = True
     highest = int(hi_ans[0])
     answer = int(hi_ans[1])
-    while wantLoop:
-        if highest >= answer and answer >= 0:
-            wantLoop = False
-        else:
-            if highest < answer:
-                answer = int(raw_input("answer was higher than the limit, please enter a new one, or type 'quit' to quit: "))
-                if answer == 'quit':
-                    print('exiting...')
-                    wantLoop = False
-            else:
-                answer = raw_input("answer %d was negative, please enter a new one, or type 'quit' to quit: " %answer)
-                if answer == 'quit':
-                    print('exiting...')
-                    wantLoop = False
-    if answer != 'quit':
-        playGame(int(highest), int(answer))
+    playGame(int(highest), int(answer))
